@@ -1,3 +1,6 @@
+OPTION 1
+//array ( inefficient and has runtime n^2)
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -10,5 +13,32 @@ public:
     }
     return{};
 
+    }
+};
+
+
+OPTION 2:
+//hashtable(better)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int, int> numsMap;
+    int n = nums.size();
+
+    //build a hashtable or map with numbers as keys and positions as values
+    for( int i = 0; i<n; i++){
+        numsMap [nums[i]] = i;
+    }
+
+//find a compliment
+for( int i = 0; i < n; i++){
+int complement = target - nums[i];
+if(numsMap.count(complement) && numsMap[complement] != i){
+    return {i, numsMap[complement]};
+}
+
+
+}
+return{};
     }
 };
